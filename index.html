@@ -1,124 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Javier Escobar Ortiz | Portafolio Profesional</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Escobar Ortiz | Portfolio</title>
+    <meta name="description" content="Portfolio de Javier Escobar Ortiz, estudiante de Desarrollo de Aplicaciones Multiplataforma (DAM).">
+    <meta name="theme-color" content="#0b1220">
+
+    <!-- Aplica el tema guardado antes de pintar la página (evita parpadeo) -->
+    <script>
+        (function () {
+            var theme;
+            try { theme = localStorage.getItem('theme'); } catch (e) { }
+            if (!theme) theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/main.js"></script>
 </head>
+
 <body>
 
-  <!-- Navegación -->
-  <nav class="navbar">
-    <div class="nav-brand">Javier Escobar</div>
-    <ul class="nav-links">
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li><a href="#habilidades">Competencias</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+    <!-- ===== Iconos (se definen una vez y se usan con <use href="#icon-...">) ===== -->
+    <svg class="sprite" aria-hidden="true">
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" />
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+            <path d="m3 6 9 7 9-7" />
+        </symbol>
+        <symbol id="icon-external" viewBox="0 0 24 24">
+            <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+        </symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24">
+            <path d="m8 7-5 5 5 5M16 7l5 5-5 5" />
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24">
+            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z" />
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+        </symbol>
+    </svg>
 
-  <!-- Portada / Hero -->
-  <header id="sobre-mi" class="hero">
-    <div class="hero-content">
-      <span class="badge">Desarrollador de Aplicaciones Multiplataforma</span>
-      <h1>Javier Escobar Ortiz</h1>
-      <p class="hero-description">
-        Estudiante proactivo y adaptable centrado en el desarrollo web, APIs REST y gestión de infraestructuras de datos. Enfocado en soluciones claras, eficientes y funcionales.
-      </p>
-      <div class="hero-buttons">
-        <a href="#proyectos" class="btn btn-primary">Ver mis proyectos <i class="fas fa-arrow-down"></i></a>
-        <a href="https://github.com/Javaieso" target="_blank" rel="noopener" class="btn btn-secondary">
-          <i class="fab fa-github"></i> GitHub (Javaieso)
-        </a>
-      </div>
-    </div>
-  </header>
+    <!-- ===== Navegación ===== -->
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="#inicio" class="brand" data-i18n-aria="aria.home" aria-label="Ir al inicio">JE<span>.</span></a>
 
-  <main class="container">
-    <!-- Competencias / Habilidades -->
-    <section id="habilidades" class="section">
-      <h2 class="section-title"><i class="fas fa-layer-group"></i> Habilidades y Especialidades</h2>
-      <p class="section-subtitle">Tecnologías y herramientas con las que desarrollo aplicaciones y sistemas.</p>
-      
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-code"></i></div>
-          <h3>Lenguajes</h3>
-          <p>Dominio práctico de Java, JavaScript, Python y maquetación web con HTML y CSS.</p>
+            <nav id="nav-menu" class="nav-menu">
+                <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+                <a href="#habilidades" data-i18n="nav.skills">Habilidades</a>
+                <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+                <a href="#formacion" data-i18n="nav.education">Formación</a>
+                <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="lang-toggle" class="icon-btn lang-btn" type="button" data-i18n-aria="aria.lang"
+                    aria-label="Cambiar idioma">EN</button>
+
+                <button id="theme-toggle" class="icon-btn" type="button" data-i18n-aria="aria.theme"
+                    aria-label="Cambiar tema">
+                    <svg class="icon-sun" aria-hidden="true"><use href="#icon-sun" /></svg>
+                    <svg class="icon-moon" aria-hidden="true"><use href="#icon-moon" /></svg>
+                </button>
+
+                <button id="menu-toggle" class="icon-btn menu-btn" type="button" aria-controls="nav-menu"
+                    aria-expanded="false" data-i18n-aria="aria.menu" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
+    </header>
 
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-          <h3>Desarrollo Web & Interfaces</h3>
-          <p>Creación de sitios web interactivos, aplicaciones modernas con Angular y JavaFX, e integración de APIs REST.</p>
-        </div>
+    <main>
+        <!-- ===== Portada ===== -->
+        <section id="inicio" class="hero">
+            <div class="container hero-inner">
+                <span class="badge" data-i18n="hero.badge">Desarrollador de Aplicaciones Multiplataforma</span>
+                <h1>Javier Escobar Ortiz</h1>
+                <p class="hero-text" data-i18n="hero.text">
+                    Estudiante de DAM centrado en desarrollo web, APIs REST y bases de datos.
+                    Me gusta construir soluciones claras, funcionales y que vayan al grano.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta">Ver proyectos</a>
+                    <a href="https://github.com/Javaieso" target="_blank" rel="noopener" class="btn btn-ghost">
+                        <svg class="fill" aria-hidden="true"><use href="#icon-github" /></svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/javier-escobar-ortiz-0736b143a/" target="_blank" rel="noopener"
+                        class="btn btn-ghost">
+                        <svg class="fill" aria-hidden="true"><use href="#icon-linkedin" /></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-database"></i></div>
-          <h3>Bases de Datos e Infraestructura</h3>
-          <p>Diseño y optimización de bases de datos relacionales y no relacionales (PostgreSQL, SQLite, MongoDB), TypeORM y contenedores Docker.</p>
-        </div>
+        <!-- ===== Sobre mí ===== -->
+        <section id="sobre-mi" class="section">
+            <div class="container about-grid">
+                <div>
+                    <h2 class="section-title" data-i18n="about.title">Sobre mí</h2>
+                    <p class="lead" data-i18n="about.text">
+                        Tengo 19 años y muchas ganas de aprender y seguir formándome. Me adapto bien a cualquier
+                        situación, trabajo a gusto tanto en equipo como en solitario y afronto cada proyecto con
+                        actitud proactiva.
+                    </p>
+                </div>
 
-        <div class="skill-card">
-          <div class="skill-icon"><i class="fas fa-cogs"></i></div>
-          <h3>Sistemas de Gestión (ERP)</h3>
-          <p>Identificación, implantación, parametrización y adaptación personalizada del ERP Odoo.</p>
-        </div>
-      </div>
-    </section>
+                <div class="about-side">
+                    <div class="info-block">
+                        <h3 data-i18n="about.softTitle">Soft skills</h3>
+                        <ul class="chips">
+                            <li data-i18n="soft.1">Adaptabilidad</li>
+                            <li data-i18n="soft.2">Trabajo en equipo</li>
+                            <li data-i18n="soft.3">Habilidades sociales</li>
+                            <li data-i18n="soft.4">Gestión del estrés</li>
+                            <li data-i18n="soft.5">Perseverancia</li>
+                            <li data-i18n="soft.6">Atención al detalle</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h3 data-i18n="about.langTitle">Idiomas</h3>
+                        <ul class="lang-list">
+                            <li><span data-i18n="lang.en">Inglés</span><strong>B2</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Galería de Proyectos -->
-    <section id="proyectos" class="section">
-      <h2 class="section-title"><i class="fas fa-folder-open"></i> Mis Proyectos</h2>
-      <p class="section-subtitle">A continuación puedes explorar mis repositorios. Haz clic en cualquier proyecto para ver su código fuente y detalles en GitHub.</p>
+        <!-- ===== Habilidades ===== -->
+        <section id="habilidades" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title" data-i18n="skills.title">Habilidades técnicas</h2>
+                <p class="section-subtitle" data-i18n="skills.subtitle">Tecnologías y herramientas con las que trabajo.</p>
 
-      <div class="projects-grid" id="projects-container">
-        <!-- Tarjetas dinámicas generadas desde script.js -->
-      </div>
-    </section>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3 data-i18n="skills.web.title">Web, APIs e interfaces</h3>
+                        <p data-i18n="skills.web.text">Sitios y aplicaciones web interactivas, APIs REST e interfaces
+                            modernas, integrando tecnologías como MediaPipe o Web Speech API.</p>
+                        <ul class="tags">
+                            <li>Angular</li><li>JavaFX</li><li>REST</li><li>MediaPipe</li><li>Compodoc</li>
+                        </ul>
+                    </article>
 
-    <!-- Formulario rápido para agregar/probar nuevos proyectos localmente -->
-    <section class="section admin-section">
-      <details class="admin-details">
-        <summary><i class="fas fa-plus-circle"></i> ¿Quieres añadir temporalmente un nuevo proyecto a la lista?</summary>
-        <form id="project-form" class="project-form">
-          <input type="text" id="title" placeholder="Título del proyecto (ej: Mi Web App)" required>
-          <textarea id="description" placeholder="Descripción clara del proyecto..." required></textarea>
-          <input type="url" id="link" placeholder="Enlace de GitHub (https://github.com/...)" required>
-          <button type="submit" class="btn btn-primary">Añadir al Portafolio</button>
-        </form>
-      </details>
-    </section>
+                    <article class="card">
+                        <h3 data-i18n="skills.lang.title">Lenguajes</h3>
+                        <p data-i18n="skills.lang.text">Dominio práctico de los lenguajes que uso en el día a día.</p>
+                        <ul class="tags">
+                            <li>Java</li><li>JavaScript</li><li>Python</li><li>HTML</li><li>CSS</li>
+                        </ul>
+                    </article>
 
-    <!-- Contacto -->
-    <section id="contacto" class="section contact-section">
-      <h2 class="section-title"><i class="fas fa-envelope"></i> Contacto</h2>
-      <p>Si quieres saber más sobre mi trabajo o colaborar en un proyecto, puedes contactarme directamente:</p>
-      
-      <div class="contact-cards">
-        <a href="mailto:javieso937@gmail.com" class="contact-card">
-          <i class="fas fa-envelope-open-text"></i>
-          <span>javieso937@gmail.com</span>
-        </a>
-        <a href="https://linkedin.com/in/JavierEscobarOrtiz" target="_blank" rel="noopener" class="contact-card">
-          <i class="fab fa-linkedin"></i>
-          <span>Javier Escobar Ortiz</span>
-        </a>
-        <a href="https://github.com/Javaieso" target="_blank" rel="noopener" class="contact-card">
-          <i class="fab fa-github"></i>
-          <span>Javaieso en GitHub</span>
-        </a>
-      </div>
-    </section>
-  </main>
+                    <article class="card">
+                        <h3 data-i18n="skills.db.title">Bases de datos e infraestructura</h3>
+                        <p data-i18n="skills.db.text">Diseño, gestión y optimización de bases de datos relacionales y
+                            no relacionales, ORM y entornos aislados con contenedores.</p>
+                        <ul class="tags">
+                            <li>PostgreSQL</li><li>SQLite</li><li>MongoDB</li><li>TypeORM</li><li>Docker</li><li>TablePlus</li>
+                        </ul>
+                    </article>
 
-  <footer>
-    <p>© Javier Escobar Ortiz — Portafolio Personal y Desarrollo TFG</p>
-  </footer>
+                    <article class="card">
+                        <h3 data-i18n="skills.erp.title">Sistemas de gestión (ERP)</h3>
+                        <p data-i18n="skills.erp.text">Identificación, implantación, parametrización y adaptación
+                            personalizada del ERP Odoo.</p>
+                        <ul class="tags">
+                            <li>Odoo</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-  <script src="script.js"></script>
+        <!-- ===== Proyectos ===== -->
+        <section id="proyectos" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
+                <p class="section-subtitle" data-i18n="projects.subtitle">Trabajos que he ido realizando. Puedes ver la
+                    demo o el código de cada uno.</p>
+
+                <!-- Las tarjetas se generan desde data/projects.js -->
+                <div id="projects-grid" class="cards-grid projects-grid"></div>
+            </div>
+        </section>
+
+        <!-- ===== Formación ===== -->
+        <section id="formacion" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title" data-i18n="edu.title">Formación</h2>
+
+                <ol class="timeline">
+                    <li>
+                        <h3 data-i18n="edu.dam.title">Desarrollo de Aplicaciones Multiplataforma (DAM)</h3>
+                        <p data-i18n="edu.dam.text">Ciclo Formativo de Grado Superior.</p>
+                    </li>
+                    <li>
+                        <h3 data-i18n="edu.bach.title">Bachillerato Tecnológico</h3>
+                    </li>
+                </ol>
+
+                <h3 class="subsection-title" data-i18n="edu.extraTitle">Formación complementaria</h3>
+                <ul class="extra-list">
+                    <li data-i18n="edu.eoi.title">Curso de formación con EOI</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== Contacto ===== -->
+        <section id="contacto" class="section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle">¿Quieres saber más o trabajar conmigo?
+                    Escríbeme.</p>
+
+                <div class="contact-grid">
+                    <a href="mailto:javieso937@gmail.com" class="contact-card">
+                        <svg aria-hidden="true"><use href="#icon-mail" /></svg>
+                        <span>javieso937@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/javier-escobar-ortiz-0736b143a/" target="_blank" rel="noopener"
+                        class="contact-card">
+                        <svg class="fill" aria-hidden="true"><use href="#icon-linkedin" /></svg>
+                        <span>Javier Escobar Ortiz</span>
+                    </a>
+                    <a href="https://github.com/Javaieso" target="_blank" rel="noopener" class="contact-card">
+                        <svg class="fill" aria-hidden="true"><use href="#icon-github" /></svg>
+                        <span>github.com/Javaieso</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Javier Escobar Ortiz</p>
+    </footer>
+
 </body>
+
 </html>
